@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REMINDERS</title>
+    <link rel="icon" href="assets/images/icon.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+* {
+  letter-spacing: 0.125em;
+
+}
+ul {
+
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: url('assets/images/alarm.jpg') no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  margin: 0 auto 100px;
+  border: 1px;
+  width: 300px;
+  padding: 1.25em;
+  background-color: #1e88e5;
+  border-radius: 3px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+
+}
+
+h1 {
+  color: #f4511e;
+  text-transform: uppercase;
+  font-size: 225%;
+  
+}
+
+input {
+  padding: 10px 5px 10px 40px;
+  margin: 2em 0;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+}
+
+input:hover {
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s;
+}
+
+label {
+  display: block;
+  color: #fff;
+  letter-spacing: 0.125em;
+  font-family: "Raleway";
+  font-weight: 700;
+  font-size: 1.075em;
+  margin: 0 0 -0.75em 0.25em;
+}
+
+.btn-alarm {
+  display: block;
+  margin-top: 2em;
+  margin-right: 0.75em;
+  float: right;
+  border-radius: 5px;
+  font-weight: 700;
+  border: none;
+  padding: 1em;
+  color: #64dd17;
+  transition: all 0.5s;
+}
+
+.btn-alarm:hover,
+.options > button:hover {
+  color: #fff;
+  background-color: #55d753;
+  transition: all 0.5s;
+  transform: translateY(-1px);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-alarm:active,
+.options > button:active {
+  transition: all 0.1s;
+  transform: translateY(1px);
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.options > button {
+  /*   display: none; */
+  margin-top: 0.5em;
+  margin-right: 1.25em;
+  border-radius: 5px;
+  font-weight: 700;
+  border: none;
+  padding: 1em;
+  color: #64dd17;
+  transition: all 0.5s;
+}
+
+:focus {
+  outline-color: #64dd17;
+}
+
+::selection {
+  background-color: #ffebee;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 50px 25px;
+    }
+
+    button {
+        margin-bottom: 10px;
+    }
+
+}   
+    </style>
+</head>
+
+<body>
+<!-- navigation bar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage" style="color: beige"><img src="assets/images/logo.png" class="img-circle" alt="Logo"><br>CHAPERONE</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="home.html">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="user.html"><span class="glyphicon glyphicon-user"></span> Your Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+<div  class="container-fluid bg-3 text-center">   
+ <br><br><br><h1> Set Reminder</h1>
+    
+    <div class="wrapper">
+    
+        <label>Set Reminder For</label>
+        <input type="text" id="title" placeholder="Title..." />
+        <label>Reminder Time</label>
+        <input type="time" name="" class="alarm-time" />
+        <button class="btn-alarm">Set Alarm</button>
+        <div class="options">
+            <button class="btn-snooze">Snooze for 5s</button>
+        </div>
+    </div>
+    <p style="color: rgba(240, 255, 255, 0.733);">[ set reminder for your important tasks ]</p>
+</div>
+    
+  <script>
+        //declare variables we'll need
+const alarmButton = document.querySelector(".btn-alarm");
+const snoozeButton = document.querySelector(".btn-snooze");
+const stopButton = document.querySelector(".btn-stopalarm");
+const time = document.querySelector(".alarm-time");
+const options = document.querySelector(".options");
+const alarmSound = new Audio();
+
+/*
+ * I cannot guarantee this url
+ * will not change and break
+ * the sound functionality.
+ */
+
+alarmSound.src = "assets/audios/alarm.mp3";
+let alarmTimer;
+
+// initially hide snooze button until it's useful
+options.style.display = "none";
+
+function setAlarm() {
+  let ms = new Date().setHours(0, 0, 0, 0) + time.valueAsNumber;
+  if (isNaN(ms)) {
+    return alert("You've got to give me something to work with here, friend.");
+  }
+  let alarm = new Date(ms);
+  var dt = new Date().getTime();
+  let differenceInMs = alarm.getTime() - dt;
+
+  if (differenceInMs < 0) {
+    return alert("It looks like that's a date from the past! Are you a time traveler?!");
+  }
+  alarmTimer = setTimeout(initAlarm, differenceInMs);
+  alarmButton.innerText = "Cancel Alarm";
+  options.style.display = "";
+  alarmButton.removeEventListener("click", setAlarm);
+  alarmButton.addEventListener("click", cancelAlarm);
+}
+
+function cancelAlarm() {
+  alarmSound.pause();
+  alarmSound.currentTime = 0;
+  clearTimeout(alarmTimer);
+  alarmButton.innerText = "Set Alarm";
+  options.style.display = "none";
+  alarmButton.removeEventListener("click", cancelAlarm);
+  alarmButton.addEventListener("click", setAlarm);
+}
+
+function initAlarm() {
+  alarmSound.play();
+  alarmSound.loop = true;
+  alarmButton.innerText = "Stop Alarm";
+  snoozeButton.addEventListener("click", snooze, false);
+}
+
+function snooze() {
+  alarmSound.pause();
+  alarmButton.innerText = "Cancel Alarm";
+  setTimeout(initAlarm, 5000);
+}
+
+alarmButton.addEventListener("click", setAlarm, false);
+function saveNote(dateTime, content) {
+  localStorage.setItem('note-' + dateTime, content);
+}
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!Doctype html>
+<html>
+<head> <title>VIDEO PAUSES</title>
+    <link rel="icon" href="assets/images/icon.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    <style media="screen">
+        body {
+            background: url('assets/images/videopause.jpg') no-repeat;
+            font-family: calibri light;
+            background-size: 100%;
+            text-align: center;
+            font-size: 24px;
+        }
+        #header {
+            font-family: 'Times New Roman', Times, serif;
+            
+            color: rgb(8, 24, 24);
+            padding-top: 80px;
+            padding-left: 30px;
+
+        }
+        p {
+            text-align: center;
+            color: rgb(8, 24, 24);
+            padding-left: 30px;
+            background-color: #1187b6;
+            font-size: 24px;
+        }
+        .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+#speedlist {
+    padding: 10px;
+color: white;
+background-color: #006b95;
+border: 1px solid #000;
+border-radius: 10px;
+cursor: pointer;
+margin: 5px;
+
+}
+
+#video {
+    padding: 10px;;
+color: white;
+background-color: #009578;
+border: 1px solid #000;
+border-radius: 5px;
+cursor: pointer; 
+}
+    </style>
+</head>
+<body>
+<!-- navigation bar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage" style="color: beige"><img src="assets/images/logo.png" class="img-circle" alt="Logo"><br>CHAPERONE</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="home.html">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="user.html"><span class="glyphicon glyphicon-user"></span> Your Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        <h1 id="header"> Video Pauses </h1>
+<p> [ Upload a video from your device and adjust speed settings ]</p>
+<input type="file" name="file" onchange="selectedVideo(this);"/>
+<video style="border:2px;  width:600px;" autoplay id="video" controls>
+        <source id="source" type="video/mp4"> 
+
+</video> 
+
+<script>
+function selectedVideo(self) {
+    var file = self.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        var src = e.target.result;
+        var video = document.getElementById("video");
+   
+        var source = document.getElementById('source');
+
+        source.setAttribute("src",src);
+        video.load();
+        video.play();
+        var speedlist = document.getElementById("speedlist");
+        speedlist.addEventListener("change", changeSpeed);
+        function changeSpeed(event) {
+          video.playbackRate = event.target.value;
+        }
+    }
+    reader.readAsDataURL(file);
+}
+</script>
+<center>
+<select id="speedlist">
+    <option value="1">change speed</option>
+    <option value=".5">slow</option>
+    <option value="1">normal</option>
+    <option value="1.5">fast</option>
+</select></center>
+
+</body> </html>

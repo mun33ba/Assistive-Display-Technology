@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PROFILE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/icon.jpg">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+      h1 {
+    font-size: 350%;
+  }
+      .font{
+          font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+      .background{
+          background-image: url('assets/images/user.jpg');
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+      }
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+    
+<body>
+<!-- navigation bar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage" style="color: beige"><img src="assets/images/logo.png" class="img-circle" alt="Logo"><br>CHAPERONE</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="home.html">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="user.html"><span class="glyphicon glyphicon-user"></span> Your Profile</a></li>
+        <li class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="home.html">Logout</a></li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron background" style="height:300px">
+  <div class="container">
+    <h1 style="color: beige"><br>" HELLO PAL "</h1>      
+   
+  </div>
+</div>
+  
+<div class="container-fluid bg-3 text-center font">    
+    <h2><strong>RIDE ALONG !</strong></h2><br>
+  <div class="row">
+    <div class="col-sm-3">
+      <p><strong>IS EVERYTHING CHAOTIC ?<br><br> LET'S ORGANIZE YOUR WORK</strong></p>
+      <img src="assets/features/feature1.jpg" onclick="window.location.href='todolist.html'" class="img-responsive img-circle" style="width:100%"  alt="to-do-list">
+    </div>
+    <div class="col-sm-2"> 
+      <p><strong>CAN'T DISTINGUISH BETWEEN VOICES ?<br>LET'S LEARN SOUND</strong></p>
+      <img src="assets/features/feature5.jpg" onclick="window.location.href='soundhover.html'" class="img-responsive img-circle" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-2"><br><br><br>
+      <p><strong>CAN'T KEEP UP WITH ROUTINE ?<br> LET'S MAKE THINGS PREDICTABLE FOR YOU.</strong></p>
+      <img src="assets/features/feature3.jpg" onclick="window.location.href='alarm.html'" class="img-responsive img-circle" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-2">
+      <p><strong>SOUNDS TURBO ?<br> LET'S SLOW DOWN THE WORLD FOR YOU</strong></p>
+      <img src="assets/features/feature4.jpg" onclick="window.location.href='videopause.html'"class="img-responsive img-circle" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>TOO NOISY TO COMPREHEND?<br><br> LET'S TAKE NOTE</strong></p>
+      <img src="assets/features/feature2.png" onclick="window.location.href='speechtotext.html'" class="img-responsive img-circle" style="width:100%" alt="Image">
+    </div>
+     
+  </div>
+</div><br>
+
+
+<footer class="container-fluid text-center">
+  <p>Sorry, for the inconvenience, <br> WE ARE TRYING TO CHANGE THE WORLD !</p>
+</footer>
+
+</body>
+</html>
